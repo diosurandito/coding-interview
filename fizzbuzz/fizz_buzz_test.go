@@ -1,6 +1,10 @@
 package fizzbuzz
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestReturnString(t *testing.T) {
 	expected := "2"
@@ -27,6 +31,16 @@ func TestFizzBuzz(t *testing.T) {
 	if observed := FizzBuzz(15); observed != expected {
 		t.Fatalf("FizzBuzz(15)) = %v, want %v", observed, expected)
 	}
+}
+
+func TestFizzBuzzInArray(t *testing.T) {
+	expected := [15]string{"1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"}
+	var observed [15]string
+	for i := 1; i <= 15; i++ {
+		observed[i-1] = FizzBuzz(i)
+	}
+
+	assert.Equal(t, expected, observed, "Both should be equal!")
 }
 
 // BenchmarkFizzBuzz() is a benchmarking function. These functions follow the
